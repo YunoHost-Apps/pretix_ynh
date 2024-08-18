@@ -29,7 +29,7 @@ Ceci est une fausse description des fonctionalités de l'app
 
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://docs.pretix.eu/>
+- Site officiel de l’app : <https://pretix.eu/>
 - Documentation officielle de l’admin : <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - Dépôt de code officiel de l’app : <https://github.com/pretix/pretix>
 - YunoHost Store : <https://apps.yunohost.org/app/pretix>

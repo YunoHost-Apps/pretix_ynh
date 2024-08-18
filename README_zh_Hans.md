@@ -29,7 +29,7 @@ This is a dummy description of this app features
 
 ## 文档与资源
 
-- 官方应用网站： <https://docs.pretix.eu/>
+- 官方应用网站： <https://pretix.eu/>
 - 官方管理文档： <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - 上游应用代码库： <https://github.com/pretix/pretix>
 - YunoHost 商店： <https://apps.yunohost.org/app/pretix>
