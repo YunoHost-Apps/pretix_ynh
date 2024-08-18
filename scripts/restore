@@ -45,7 +45,7 @@ systemctl enable "$app.service" --quiet
 systemctl enable "petrix-worker" --quiet
 
 yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "petrix-worker" --description="Ticket shop application" --log="/var/log/$app/$app.log"
+yunohost service add "petrix-worker" --description="Petrix worker" --log="/var/log/$app/$app.log"
 
 #=================================================
 # RESTORE VARIOUS FILES
