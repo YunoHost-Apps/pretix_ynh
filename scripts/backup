@@ -23,18 +23,16 @@ ynh_backup --src_path="$install_dir"
 # BACKUP THE DATA DIR
 #=================================================
 
-### Only relevant if there is a "data_dir" resource for this app
 ynh_backup --src_path="$data_dir" --is_big
 
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
 
-# Backup the nginx configuration
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
-# Backup the systemd service unit
 ynh_backup --src_path="/etc/systemd/system/$app.service"
+ynh_backup --src_path="/etc/systemd/system/petrix-worker.service"
 
 #=================================================
 # BACKUP VARIOUS FILES
