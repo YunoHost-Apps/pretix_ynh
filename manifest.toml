@@ -19,7 +19,7 @@ admindoc = "https://docs.pretix.eu/en/latest/admin/installation/manual_smallscal
 code = "https://github.com/pretix/pretix"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.27"
 architectures = "all"
 multi_instance = true
 ldap = false
