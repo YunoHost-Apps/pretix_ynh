@@ -29,7 +29,7 @@ This is a dummy description of this app features
 
 ## Documentación e recursos
 
-- Web oficial da app: <https://docs.pretix.eu/>
+- Web oficial da app: <https://pretix.eu/>
 - Documentación oficial para admin: <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - Repositorio de orixe do código: <https://github.com/pretix/pretix>
 - Tenda YunoHost: <https://apps.yunohost.org/app/pretix>

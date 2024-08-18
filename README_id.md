@@ -29,7 +29,7 @@ This is a dummy description of this app features
 
 ## Dokumentasi dan sumber daya
 
-- Website aplikasi resmi: <https://docs.pretix.eu/>
+- Website aplikasi resmi: <https://pretix.eu/>
 - Dokumentasi admin resmi: <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - Depot kode aplikasi hulu: <https://github.com/pretix/pretix>
 - Gudang YunoHost: <https://apps.yunohost.org/app/pretix>
