@@ -13,7 +13,7 @@ maintainers = []
 
 [upstream]
 license = "AGPL-3.0"
-website = "https://docs.pretix.eu/"
+website = "https://pretix.eu/"
 demo = "https://pretix.eu/about/en/setup"
 admindoc = "https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html"
 code = "https://github.com/pretix/pretix"
