@@ -8,6 +8,14 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing NodeJS..." --weight=10
+
+# Install Nodejs
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
@@ -26,16 +34,15 @@ ynh_script_progression --message="Installing Python dependencies..." --weight=4
 # Setup virtualenv and install dependencies
 ynh_exec_as "$app" python3 -m venv --upgrade "$install_dir/venv"
 venvpy="$install_dir/venv/bin/python3"
-(
-    set +o nounset
-    source "${install_dir}/venv/bin/activate"
-    set -o nounset
-    ynh_exec_as "$app" "$venvpy" -m pip install --upgrade pip
-    ynh_exec_as "$app" "$venvpy" -m pip install -U pip setuptools wheel
-    ynh_exec_as "$app" "$venvpy" -m pip install pretix gunicorn
-    ynh_exec_as "$app" "$venvpy" -m pretix migrate
-	ynh_exec_as "$app" "$venvpy" -m pretix rebuild
-)
+
+set +o nounset
+source "${install_dir}/venv/bin/activate"
+set -o nounset
+ynh_exec_as "$app" "$venvpy" -m pip install --upgrade pip
+ynh_exec_as "$app" "$venvpy" -m pip install -U pip setuptools wheel
+ynh_exec_as "$app" "$venvpy" -m pip install pretix gunicorn
+ynh_exec_as "$app" "$venvpy" -m pretix migrate
+ynh_exec_as "$app" "$venvpy" -m pretix rebuild
 
 #=================================================
 # APP INITIAL CONFIGURATION
