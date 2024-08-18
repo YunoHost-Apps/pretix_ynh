@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --weight=1
+
+ynh_setup_source --dest_dir="$install_dir"
+
+chown -R "$app:www-data" "$install_dir"
+
+#=================================================
+# SPECIFIC SETUP
+#=================================================
+# INSTALL PYTHON DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing Python dependencies..." --weight=4
+
+# Setup virtualenv and install dependencies
+virtualenv --python=python3 --system-site-packages "${install_dir}/venv"
+(
+    set +o nounset
+    source "${install_dir}/venv/bin/activate"
+    set -o nounset
+    python3 -m pip install --upgrade pip
+    python3 -m pip install -U pip setuptools wheel
+    python3 -m pip install pretix gunicorn
+    python3 -m pretix migrate
+	python3 -m pretix rebuild
+)
+
+#=================================================
+# APP INITIAL CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding $app's configuration files..." --weight=1
+
+ynh_add_config --template="petrix.cfg" --destination="$install_dir/petrix.cfg"
+
+chmod 600 "$install_dir/petrix.cfg"
+chown "$app:$app" "$install_dir/petrix.cfg"
+
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+
+ynh_add_nginx_config
+
+ynh_add_systemd_config
+
+yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Starting $app's systemd service..." --weight=1
+
+# Start a systemd service
+ynh_systemd_action --service_name="$app" --action="start" --log_path="/var/log/$app/$app.log"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+ynh_script_progression --message="Installation of $app completed" --last
