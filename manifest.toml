@@ -46,14 +46,6 @@ ram.runtime = "50M"
 
 [resources]
 
-    [resources.sources]
-
-    [resources.sources.main]
-    url = "https://github.com/pretix/pretix/archive/refs/tags/v2024.7.0.tar.gz"
-    sha256 = "c404fffdcc2414d4af5185872a8665161fe56814d1a9bc67944123e481e0b29d"
-
-    autoupdate.strategy = "latest_github_tag"
-
     [resources.system_user]
 
     [resources.install_dir]
