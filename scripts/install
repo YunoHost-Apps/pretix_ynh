@@ -37,8 +37,8 @@ pushd $install_dir
 	python3 -m venv $install_dir/venv
 	source $install_dir/venv/bin/activate
 	pip install --upgrade pip
-	ynh_exec_warn_less pip install pip setuptools wheel
-	ynh_exec_warn_less pip install pip install pretix gunicorn
+	ynh_exec_warn_less pip install setuptools wheel
+	ynh_exec_warn_less pip install pretix gunicorn
 	python3 -m pretix migrate
 	python3 -m pretix rebuild
 popd
