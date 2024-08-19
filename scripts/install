@@ -20,9 +20,11 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-ynh_setup_source --dest_dir="$install_dir"
-
-chown -R "$app:www-data" "$install_dir"
+#ynh_setup_source --dest_dir="$install_dir"
+mkdir -p $install_dir
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # SPECIFIC SETUP
@@ -32,16 +34,26 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression --message="Installing Python dependencies..." --weight=4
 
 pushd $install_dir
-	# Setup virtualenv and install dependencies
-	ynh_exec_as "$app" python3 -m venv --upgrade "$install_dir/venv"
-	venvpy="$install_dir/venv/bin/python3"
+	python3 -m venv $install_dir/venv
 	source $install_dir/venv/bin/activate
-	ynh_exec_as "$app" "$venvpy" -m pip install --upgrade pip
-	ynh_exec_as "$app" "$venvpy" -m pip install -U pip setuptools wheel
-	ynh_exec_as "$app" "$venvpy" -m pip install pretix gunicorn
-	ynh_exec_as "$app" "$venvpy" -m pretix migrate
-	ynh_exec_as "$app" "$venvpy" -m pretix rebuild
+	pip install --upgrade pip
+	ynh_exec_warn_less pip install -m pip setuptools wheel
+	ynh_exec_warn_less pip install -m pip install pretix gunicorn
+	python3 -m pretix migrate
+	python3 -m pretix rebuild
 popd
+
+#pushd $install_dir
+#	# Setup virtualenv and install dependencies
+#	ynh_exec_as "$app" python3 -m venv --upgrade "$install_dir/venv"
+#	venvpy="$install_dir/venv/bin/python3"
+#	source $install_dir/venv/bin/activate
+#	ynh_exec_as "$app" "$venvpy" -m pip install --upgrade pip
+#	ynh_exec_as "$app" "$venvpy" -m pip install -U pip setuptools wheel
+#	ynh_exec_as "$app" "$venvpy" -m pip install pretix gunicorn
+#	ynh_exec_as "$app" "$venvpy" -m pretix migrate
+#	ynh_exec_as "$app" "$venvpy" -m pretix rebuild
+#popd
 
 #=================================================
 # APP INITIAL CONFIGURATION
