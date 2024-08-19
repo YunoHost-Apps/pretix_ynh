@@ -48,10 +48,10 @@ popd
 #=================================================
 ynh_script_progression --message="Adding $app's configuration files..." --weight=1
 
-ynh_add_config --template="petrix.cfg" --destination="$install_dir/petrix.cfg"
+ynh_add_config --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
 
-chmod 600 "$install_dir/petrix.cfg"
-chown "$app:$app" "$install_dir/petrix.cfg"
+chmod 600 "$install_dir/pretix.cfg"
+chown "$app:$app" "$install_dir/pretix.cfg"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -63,7 +63,7 @@ ynh_add_nginx_config
 ynh_add_systemd_config
 
 yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "petrix-worker" --description="Petrix worker" --log="/var/log/$app/$app.log"
+yunohost service add "petrix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -72,7 +72,7 @@ ynh_script_progression --message="Starting $app's systemd service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd"
-ynh_systemd_action --service_name="petrix-worker" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="pretix-worker" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT

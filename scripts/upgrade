@@ -13,8 +13,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Stopping $app's systemd service..." --weight=1
 
-ynh_systemd_action --service_name="$app" --action="stop" --log_path="/var/log/$app/$app.log"
-ynh_systemd_action --service_name="petrix-worker" --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name="$app" --action="stop" --log_path="systemd"
+ynh_systemd_action --service_name="pretix-worker" --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -31,10 +31,10 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression --message="Updating $app's configuration files..." --weight=1
 
-ynh_add_config --template="petrix.cfg" --destination="$install_dir/petrix.cfg"
+ynh_add_config --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
 
-chmod 600 "$install_dir/petrix.cfg"
-chown "$app:$app" "$install_dir/petrix.cfg"
+chmod 600 "$install_dir/pretix.cfg"
+chown "$app:$app" "$install_dir/pretix.cfg"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -46,7 +46,7 @@ ynh_add_nginx_config
 ynh_add_systemd_config
 
 yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "petrix-worker" --description="Petrix worker" --log="/var/log/$app/$app.log"
+yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -54,7 +54,7 @@ yunohost service add "petrix-worker" --description="Petrix worker" --log="/var/l
 ynh_script_progression --message="Starting $app's systemd service..." --weight=1
 
 ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd"
-ynh_systemd_action --service_name="petrix-worker" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="pretix-worker" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
