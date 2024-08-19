@@ -16,8 +16,7 @@
 
 ## 概况
 
-This is a dummy description of this app features
-
+Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
 **分发版本：** 2024.7.0~ynh1
 
@@ -25,11 +24,11 @@ This is a dummy description of this app features
 
 ## 截图
 
-![Pretix 的截图](./doc/screenshots/example.jpg)
+![Pretix 的截图](./doc/screenshots/screenshot.png)
 
 ## 文档与资源
 
-- 官方应用网站： <https://docs.pretix.eu/>
+- 官方应用网站： <https://pretix.eu/>
 - 官方管理文档： <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - 上游应用代码库： <https://github.com/pretix/pretix>
 - YunoHost 商店： <https://apps.yunohost.org/app/pretix>

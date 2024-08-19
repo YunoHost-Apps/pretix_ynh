@@ -16,8 +16,7 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-Ceci est une fausse description des fonctionalités de l'app
-
+Application de billetterie pour conférences, festivals, concerts, événements technologiques, spectacles, expositions, ateliers, barcamps, etc.
 
 **Version incluse :** 2024.7.0~ynh1
 
@@ -25,11 +24,11 @@ Ceci est une fausse description des fonctionalités de l'app
 
 ## Captures d’écran
 
-![Capture d’écran de Pretix](./doc/screenshots/example.jpg)
+![Capture d’écran de Pretix](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://docs.pretix.eu/>
+- Site officiel de l’app : <https://pretix.eu/>
 - Documentation officielle de l’admin : <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - Dépôt de code officiel de l’app : <https://github.com/pretix/pretix>
 - YunoHost Store : <https://apps.yunohost.org/app/pretix>

@@ -16,8 +16,7 @@
 
 ## Обзор
 
-This is a dummy description of this app features
-
+Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
 **Поставляемая версия:** 2024.7.0~ynh1
 
@@ -25,11 +24,11 @@ This is a dummy description of this app features
 
 ## Снимки экрана
 
-![Снимок экрана Pretix](./doc/screenshots/example.jpg)
+![Снимок экрана Pretix](./doc/screenshots/screenshot.png)
 
 ## Документация и ресурсы
 
-- Официальный веб-сайт приложения: <https://docs.pretix.eu/>
+- Официальный веб-сайт приложения: <https://pretix.eu/>
 - Официальная документация администратора: <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
 - Репозиторий кода главной ветки приложения: <https://github.com/pretix/pretix>
 - Магазин YunoHost: <https://apps.yunohost.org/app/pretix>

@@ -1,5 +1,5 @@
 [Unit]
-Description=Pretix web service
+Description=Pretix background worker
 After=network.target
 
 [Service]
@@ -7,10 +7,7 @@ User=__APP__
 Group=__APP__
 Environment="VIRTUAL_ENV=__INSTALL_DIR__/venv"
 Environment="PATH=__INSTALL_DIR__/venv/bin:/usr/local/bin:/usr/bin:/bin"
-ExecStart=__INSTALL_DIR__/venv/bin/gunicorn pretix.wsgi \
-                      --name pretix --workers 5 \
-                      --max-requests 1200  --max-requests-jitter 50 \
-                      --log-level=info --bind=127.0.0.1:__PORT__
+ExecStart=__INSTALL_DIR__/venv/bin/celery -A pretix.celery_app worker -l info
 WorkingDirectory=__INSTALL_DIR__
 Restart=on-failure
 

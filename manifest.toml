@@ -13,13 +13,13 @@ maintainers = []
 
 [upstream]
 license = "AGPL-3.0"
-website = "https://docs.pretix.eu/"
+website = "https://pretix.eu/"
 demo = "https://pretix.eu/about/en/setup"
 admindoc = "https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html"
 code = "https://github.com/pretix/pretix"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.27"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -46,15 +46,8 @@ ram.runtime = "50M"
 
 [resources]
 
-    [resources.sources]
-
-    [resources.sources.main]
-    url = "https://github.com/pretix/pretix/archive/refs/tags/v2024.7.0.tar.gz"
-    sha256 = "c404fffdcc2414d4af5185872a8665161fe56814d1a9bc67944123e481e0b29d"
-
-    autoupdate.strategy = "latest_github_tag"
-
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
 

@@ -1,1 +1,1 @@
-This is a dummy description of this app features
+Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
