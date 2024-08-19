@@ -25,7 +25,7 @@ This is a dummy description of this app features
 
 ## 截图
 
-![Pretix 的截图](./doc/screenshots/example.jpg)
+![Pretix 的截图](./doc/screenshots/screenshot.png)
 
 ## 文档与资源
 

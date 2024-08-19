@@ -25,7 +25,7 @@ This is a dummy description of this app features
 
 ## Capturas
 
-![Captura de Pretix](./doc/screenshots/example.jpg)
+![Captura de Pretix](./doc/screenshots/screenshot.png)
 
 ## Documentaciones y recursos
 
