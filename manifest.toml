@@ -35,7 +35,7 @@ ram.runtime = "50M"
 
     [install.path]
     type = "path"
-    default = "/example"
+    default = "/pretix"
 
     [install.init_main_permission]
     type = "group"
