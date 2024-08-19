@@ -63,7 +63,7 @@ ynh_add_nginx_config
 ynh_add_systemd_config
 
 yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "petrix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
+yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
