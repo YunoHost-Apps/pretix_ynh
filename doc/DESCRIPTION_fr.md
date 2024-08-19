@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+Application de billetterie pour conférences, festivals, concerts, événements technologiques, spectacles, expositions, ateliers, barcamps, etc.
