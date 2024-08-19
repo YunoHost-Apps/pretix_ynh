@@ -34,12 +34,10 @@ chown -R $app:www-data "$install_dir"
 ynh_script_progression --message="Installing Python dependencies..." --weight=4
 
 pushd $install_dir
-	python3 -m venv $install_dir/venv
-	source $install_dir/venv/bin/activate
-	pip install --upgrade pip
-	ynh_exec_warn_less pip install setuptools wheel pretix gunicorn
-	python3 -m pretix migrate
-	python3 -m pretix rebuild
+    python3 -m venv $install_dir/venv
+    ynh_exec_warn_less $install_dir/venv/bin/pip install --upgrade pip setuptools wheel pretix gunicorn
+    $install_dir/venv/bin/python3 -m pretix migrate
+    $install_dir/venv/bin/python3 -m pretix rebuild
 popd
 
 #=================================================
