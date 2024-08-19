@@ -25,7 +25,7 @@ This is a dummy description of this app features
 
 ## Tangkapan Layar
 
-![Tangkapan Layar pada Pretix](./doc/screenshots/example.jpg)
+![Tangkapan Layar pada Pretix](./doc/screenshots/screenshot.png)
 
 ## Dokumentasi dan sumber daya
 

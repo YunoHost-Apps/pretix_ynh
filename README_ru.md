@@ -25,7 +25,7 @@ This is a dummy description of this app features
 
 ## Снимки экрана
 
-![Снимок экрана Pretix](./doc/screenshots/example.jpg)
+![Снимок экрана Pretix](./doc/screenshots/screenshot.png)
 
 ## Документация и ресурсы
 

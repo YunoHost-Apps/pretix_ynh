@@ -25,7 +25,7 @@ Ceci est une fausse description des fonctionalités de l'app
 
 ## Captures d’écran
 
-![Capture d’écran de Pretix](./doc/screenshots/example.jpg)
+![Capture d’écran de Pretix](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 

@@ -25,7 +25,7 @@ This is a dummy description of this app features
 
 ## Pantaila-argazkiak
 
-![Pretix(r)en pantaila-argazkia](./doc/screenshots/example.jpg)
+![Pretix(r)en pantaila-argazkia](./doc/screenshots/screenshot.png)
 
 ## Dokumentazioa eta baliabideak
 
