@@ -16,8 +16,7 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-Ceci est une fausse description des fonctionalités de l'app
-
+Application de billetterie pour conférences, festivals, concerts, événements technologiques, spectacles, expositions, ateliers, barcamps, etc.
 
 **Version incluse :** 2024.7.0~ynh1
 
