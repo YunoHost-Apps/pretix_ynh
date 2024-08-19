@@ -16,8 +16,7 @@ No se debe editar a mano.
 
 ## Descripción general
 
-This is a dummy description of this app features
-
+Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
 **Versión actual:** 2024.7.0~ynh1
 

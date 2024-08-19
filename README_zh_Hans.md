@@ -16,8 +16,7 @@
 
 ## 概况
 
-This is a dummy description of this app features
-
+Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
 **分发版本：** 2024.7.0~ynh1
 
