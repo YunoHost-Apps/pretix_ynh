@@ -31,14 +31,14 @@ ynh_backup --src_path="$data_dir" --is_big
 
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
-ynh_backup --src_path="/etc/systemd/system/$app.service"
-ynh_backup --src_path="/etc/systemd/system/pretix-worker.service"
+ynh_backup --src_path="/etc/systemd/system/${app}-web.service"
+ynh_backup --src_path="/etc/systemd/system/${app}-worker.service"
 
 #=================================================
 # BACKUP VARIOUS FILES
 #=================================================
 
-#ynh_backup --src_path="/etc/cron.d/$app"
+ynh_backup --src_path="/etc/cron.d/$app"
 
 #=================================================
 # BACKUP THE MYSQL DATABASE

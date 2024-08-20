@@ -13,8 +13,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Stopping $app's systemd service..." --weight=1
 
-ynh_systemd_action --service_name="$app" --action="stop" --log_path="systemd"
-ynh_systemd_action --service_name="pretix-worker" --action="stop" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-web" --action="stop" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-worker" --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -35,14 +35,11 @@ chown -R $app:www-data "$install_dir"
 ynh_script_progression --message="Installing Python dependencies..." --weight=4
 
 pushd $install_dir
-	python3 -m venv $install_dir/venv
-	source $install_dir/venv/bin/activate
-	pip install --upgrade pip
-	ynh_exec_warn_less pip install -U --upgrade-strategy eager pretix gunicorn
-	ynh_exec_warn_less pip install pretix gunicorn
-	python3 -m pretix migrate
-	python3 -m pretix rebuild
-	python3 -m pretix updateassets
+    python3 -m venv $install_dir/venv
+    ynh_exec_warn_less $install_dir/venv/bin/pip install -U --upgrade-strategy eager pretix gunicorn
+    $install_dir/venv/bin/python3 -m pretix migrate
+    $install_dir/venv/bin/python3 -m pretix rebuild
+    $install_dir/venv/bin/python3 -m pretix updateassets
 popd
 
 #=================================================
@@ -62,7 +59,8 @@ ynh_script_progression --message="Upgrading system configurations related to $ap
 
 ynh_add_nginx_config
 
-ynh_add_systemd_config
+ynh_add_systemd_config --service="${app}-web" --template="pretix-web.service"
+ynh_add_systemd_config --service="${app}-worker" --template="pretix-worker.service"
 
 yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
 yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
@@ -72,8 +70,8 @@ yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/l
 #=================================================
 ynh_script_progression --message="Starting $app's systemd service..." --weight=1
 
-ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd"
-ynh_systemd_action --service_name="pretix-worker" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-web" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-worker" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT

@@ -57,10 +57,19 @@ ynh_script_progression --message="Adding system configurations related to $app..
 
 ynh_add_nginx_config
 
-ynh_add_systemd_config
+ynh_add_systemd_config --service="${app}-web" --template="pretix-web.service"
+ynh_add_systemd_config --service="${app}-worker" --template="pretix-worker.service"
 
-yunohost service add "$app" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
+yunohost service add "${app}-web" --description="Ticket shop application" --log="/var/log/$app/$app.log"
+yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
+
+#=================================================
+# ADD A CRON JOB
+#=================================================
+
+ynh_add_config --template="pretix.cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -68,8 +77,8 @@ yunohost service add "pretix-worker" --description="Pretix worker" --log="/var/l
 ynh_script_progression --message="Starting $app's systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd"
-ynh_systemd_action --service_name="pretix-worker" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-web" --action="start" --log_path="systemd"
+ynh_systemd_action --service_name="${app}-worker" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
