@@ -36,11 +36,10 @@ ynh_script_progression --message="Installing Python dependencies..." --weight=4
 pushd $install_dir
     python3 -m venv $install_dir/venv
     chown -R "$app:" "$install_dir"
-    source "$install_dir/venv/bin/activate"
-    ynh_exec_warn_less ynh_exec_as $app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel
-    ynh_exec_warn_less ynh_exec_as $app $install_dir/venv/bin/pip install pretix gunicorn
-    ynh_exec_warn_less ynh_exec_as $app $install_dir/venv/bin/python3 -m pretix migrate
-    ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $install_dir/venv/bin/python3 -m pretix rebuild
+    ynh_exec_warn_less $install_dir/venv/bin/pip install --upgrade pip setuptools wheel
+    ynh_exec_warn_less $install_dir/venv/bin/pip install pretix gunicorn
+    ynh_exec_warn_less $install_dir/venv/bin/python3 -m pretix migrate
+    ynh_exec_warn_less $install_dir/venv/bin/python3 -m pretix rebuild
 popd
 
 mkdir -p $install_dir/data/media
