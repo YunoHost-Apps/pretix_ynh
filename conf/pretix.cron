@@ -1,0 +1,1 @@
+15,45 * * * * export PATH=__INSTALL_DIR__/venv/bin:$PATH && __INSTALL_DIR__/venv/bin/python3 -m pretix runperiodic
