@@ -8,7 +8,7 @@ Group=__APP__
 Environment="VIRTUAL_ENV=__INSTALL_DIR__/venv"
 Environment="PATH=__INSTALL_DIR__/venv/bin:/usr/local/bin:/usr/bin:/bin"
 ExecStart=__INSTALL_DIR__/venv/bin/celery -A pretix.celery_app worker -l info
-WorkingDirectory=__INSTALL_DIR__/
+WorkingDirectory=__INSTALL_DIR__
 Restart=on-failure
 
 [Install]
