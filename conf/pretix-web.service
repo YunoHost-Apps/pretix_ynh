@@ -11,7 +11,7 @@ ExecStart=__INSTALL_DIR__/venv/bin/gunicorn pretix.wsgi \
                       --name pretix --workers 5 \
                       --max-requests 1200  --max-requests-jitter 50 \
                       --log-level=info --bind=127.0.0.1:__PORT__
-WorkingDirectory=__INSTALL_DIR__
+WorkingDirectory=__INSTALL_DIR__/
 Restart=on-failure
 
 [Install]
