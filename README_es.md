@@ -18,7 +18,7 @@ No se debe editar a mano.
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**Versión actual:** 2024.7.0~ynh1
+**Versión actual:** 2024.9.0~ynh1
 
 **Demo:** <https://pretix.eu/about/en/setup>
 
@@ -36,7 +36,7 @@ Ticket shop application for conferences, festivals, concerts, tech events, shows
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/pretix_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/pretix_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
