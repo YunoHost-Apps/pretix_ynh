@@ -35,7 +35,7 @@ pushd $install_dir
 popd
 
 mkdir -p $install_dir/data/media
-chmod +x $install_dir
+#chmod +x $install_dir
 
 #=================================================
 # APP INITIAL CONFIGURATION
