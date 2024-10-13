@@ -17,11 +17,10 @@ ynh_script_progression "Setting up source files..."
 
 mkdir -p $install_dir
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
-#=================================================
-# SPECIFIC SETUP
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
 #=================================================
@@ -36,7 +35,8 @@ pushd $install_dir
 popd
 
 mkdir -p $install_dir/data/media
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod +x $install_dir
+chmod +x $install_dir
+
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
@@ -65,15 +65,12 @@ yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/l
 #=================================================
 
 ynh_config_add --template="pretix.cron" --destination="/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown root: "/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-# Start a systemd service
 ynh_systemctl --service="${app}-web" --action="start" --log_path="systemd"
 ynh_systemctl --service="${app}-worker" --action="start" --log_path="systemd"
 
