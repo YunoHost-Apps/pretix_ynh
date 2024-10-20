@@ -30,10 +30,6 @@ ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 ynh_backup "/etc/systemd/system/${app}-web.service"
 ynh_backup "/etc/systemd/system/${app}-worker.service"
 
-#=================================================
-# BACKUP VARIOUS FILES
-#=================================================
-
 ynh_backup "/etc/cron.d/$app"
 
 #=================================================
