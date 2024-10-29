@@ -18,7 +18,7 @@ EZ editatu eskuz.
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**Paketatutako bertsioa:** 2024.7.0~ynh1
+**Paketatutako bertsioa:** 2024.9.0~ynh1
 
 **Demoa:** <https://pretix.eu/about/en/setup>
 

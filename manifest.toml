@@ -7,9 +7,9 @@ name = "Pretix"
 description.en = "Ticket shop application for conferences, festivals, concerts..."
 description.fr = "Application de billetterie pour conférences, festivals, concerts..."
 
-version = "2024.7.0~ynh1"
+version = "2024.9.0~ynh1"
 
-maintainers = []
+maintainers = ["eric_G"]
 
 [upstream]
 license = "AGPL-3.0"
@@ -19,7 +19,8 @@ admindoc = "https://docs.pretix.eu/en/latest/admin/installation/manual_smallscal
 code = "https://github.com/pretix/pretix"
 
 [integration]
-yunohost = ">= 11.2.27"
+yunohost = ">= 11.2.30"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -43,8 +44,10 @@ ram.runtime = "50M"
     allow_email = true
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.data_dir]
+    subdirs =["media"]
 
     [resources.permissions]
     main.url = "/"

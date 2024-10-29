@@ -1,24 +1,19 @@
 #!/bin/bash
 
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=10
+ynh_script_progression "Installing NodeJS..."
 
-# Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_nodejs_install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 mkdir -p $install_dir
 
@@ -27,42 +22,37 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# SPECIFIC SETUP
-#=================================================
-# INSTALL PYTHON DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing Python dependencies..." --weight=4
-
-pushd $install_dir
-    python3 -m venv $install_dir/venv
-    ynh_exec_warn_less $install_dir/venv/bin/pip install --upgrade pip setuptools wheel
-    ynh_exec_warn_less $install_dir/venv/bin/pip install pretix gunicorn
-    ynh_exec_warn_less $install_dir/venv/bin/python3 -m pretix migrate
-    ynh_exec_warn_less $install_dir/venv/bin/python3 -m pretix rebuild
-popd
-
-mkdir -p $install_dir/data/media
-chmod +x $install_dir
-
-#=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding $app's configuration files..." --weight=1
+ynh_script_progression "Adding $app's configuration files..."
 
-ynh_add_config --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
+ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
 
 chmod 600 "$install_dir/pretix.cfg"
 chown "$app:$app" "$install_dir/pretix.cfg"
 
 #=================================================
+# INSTALL PYTHON DEPENDENCIES
+#=================================================
+ynh_script_progression "Installing Python dependencies..."
+
+pushd $install_dir
+    python3 -m venv $install_dir/venv
+    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip setuptools wheel
+    ynh_hide_warnings $install_dir/venv/bin/pip install pretix gunicorn
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix migrate
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix rebuild
+popd
+
+#=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+ynh_script_progression "Adding system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config --service="${app}-web" --template="pretix-web.service"
-ynh_add_systemd_config --service="${app}-worker" --template="pretix-worker.service"
+ynh_config_add_systemd --service="${app}-web" --template="pretix-web.service"
+ynh_config_add_systemd --service="${app}-worker" --template="pretix-worker.service"
 
 yunohost service add "${app}-web" --description="Ticket shop application" --log="/var/log/$app/$app.log"
 yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
@@ -71,20 +61,17 @@ yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/l
 # ADD A CRON JOB
 #=================================================
 
-ynh_add_config --template="pretix.cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
+ynh_config_add --template="pretix.cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting $app's systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-# Start a systemd service
-ynh_systemd_action --service_name="${app}-web" --action="start" --log_path="systemd"
-ynh_systemd_action --service_name="${app}-worker" --action="start" --log_path="systemd"
+ynh_systemctl --service="${app}-web" --action="start" --log_path="systemd"
+ynh_systemctl --service="${app}-worker" --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
