@@ -22,6 +22,16 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
+# APP INITIAL CONFIGURATION
+#=================================================
+ynh_script_progression "Adding $app's configuration files..."
+
+ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
+
+chmod 600 "$install_dir/pretix.cfg"
+chown "$app:$app" "$install_dir/pretix.cfg"
+
+#=================================================
 # INSTALL PYTHON DEPENDENCIES
 #=================================================
 ynh_script_progression "Installing Python dependencies..."
@@ -33,16 +43,6 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix migrate
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix rebuild
 popd
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-ynh_script_progression "Adding $app's configuration files..."
-
-ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
-
-chmod 600 "$install_dir/pretix.cfg"
-chown "$app:$app" "$install_dir/pretix.cfg"
 
 #=================================================
 # SYSTEM CONFIGURATION
