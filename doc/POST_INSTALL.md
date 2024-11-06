@@ -1,0 +1,1 @@
+You should now be able to reach pretix at https://__DOMAIN__/control/ and log in as `admin@localhost` with a password of `admin`. Don’t forget to change that password! Create an organizer first, then create an event and start selling tickets!

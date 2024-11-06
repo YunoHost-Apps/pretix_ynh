@@ -47,7 +47,7 @@ ram.runtime = "50M"
     group = "www-data:r-x"
 
     [resources.data_dir]
-    subdirs =["media"]
+    subdirs = ["media"]
 
     [resources.permissions]
     main.url = "/"
