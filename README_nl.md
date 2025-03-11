@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # Pretix voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/pretix)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Pretix met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 

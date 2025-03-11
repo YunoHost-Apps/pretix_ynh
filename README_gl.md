@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # Pretix para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/pretix)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Instalar Pretix con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 

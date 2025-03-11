@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Pretix YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/pretix)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Instalatu Pretix YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 

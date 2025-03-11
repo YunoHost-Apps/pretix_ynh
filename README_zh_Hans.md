@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Pretix
 
-[![集成程度](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![工作状态](https://apps.yunohost.org/badge/state/pretix)
+![维护状态](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![使用 YunoHost 安装 Pretix](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 
