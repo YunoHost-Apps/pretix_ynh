@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # Pretix pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/pretix)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Installer Pretix avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 
@@ -18,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Application de billetterie pour conférences, festivals, concerts, événements technologiques, spectacles, expositions, ateliers, barcamps, etc.
 
-**Version incluse :** 2024.9.0~ynh1
+**Version incluse :** 2025.2.0~ynh1
 
 **Démo :** <https://pretix.eu/about/en/setup>
 

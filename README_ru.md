@@ -5,7 +5,9 @@
 
 # Pretix для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Состояние работы](https://apps.yunohost.org/badge/state/pretix)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Установите Pretix с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 
@@ -18,7 +20,7 @@
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**Поставляемая версия:** 2024.9.0~ynh1
+**Поставляемая версия:** 2025.2.0~ynh1
 
 **Демо-версия:** <https://pretix.eu/about/en/setup>
 

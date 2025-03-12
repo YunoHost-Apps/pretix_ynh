@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Pretix untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/pretix)](https://ci-apps.yunohost.org/ci/apps/pretix/)
+![Status kerja](https://apps.yunohost.org/badge/state/pretix)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/pretix)
 
 [![Pasang Pretix dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
 
@@ -18,7 +20,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**Versi terkirim:** 2024.9.0~ynh1
+**Versi terkirim:** 2025.2.0~ynh1
 
 **Demo:** <https://pretix.eu/about/en/setup>
 
