@@ -20,7 +20,7 @@ Hij mag NIET handmatig aangepast worden.
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**Geleverde versie:** 2024.9.0~ynh1
+**Geleverde versie:** 2025.2.0~ynh1
 
 **Demo:** <https://pretix.eu/about/en/setup>
 
