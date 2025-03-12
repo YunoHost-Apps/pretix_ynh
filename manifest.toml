@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "pretix"
 name = "Pretix"
-description.en = "Ticket shop application for conferences, festivals, concerts..."
-description.fr = "Application de billetterie pour conférences, festivals, concerts..."
+description.en = "Ticket shop for conferences, festivals, concerts..."
+description.fr = "Billetterie pour conférences, festivals, concerts..."
 
 version = "2025.2.0~ynh1"
 
@@ -25,6 +25,7 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
+
 sso = false
 
 disk = "50M"
