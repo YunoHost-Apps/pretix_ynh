@@ -20,7 +20,7 @@
 
 Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
 
-**分发版本：** 2024.9.0~ynh1
+**分发版本：** 2025.2.0~ynh1
 
 **演示：** <https://pretix.eu/about/en/setup>
 

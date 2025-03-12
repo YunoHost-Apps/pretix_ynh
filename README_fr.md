@@ -20,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Application de billetterie pour conférences, festivals, concerts, événements technologiques, spectacles, expositions, ateliers, barcamps, etc.
 
-**Version incluse :** 2024.9.0~ynh1
+**Version incluse :** 2025.2.0~ynh1
 
 **Démo :** <https://pretix.eu/about/en/setup>
 
