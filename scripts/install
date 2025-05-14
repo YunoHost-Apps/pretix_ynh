@@ -78,11 +78,11 @@ ynh_script_progression "Adding system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd --service="${app}-backend" --template="pretix-backend.service"
-ynh_config_add_systemd --service="${app}-broker" --template="pretix-broker.service"
+ynh_config_add_systemd --service="${app}-web" --template="pretix-web.service"
+ynh_config_add_systemd --service="${app}-worker" --template="pretix-worker.service"
 
-yunohost service add "${app}-backend" --description="Pretix backend" --log="/var/log/$app/$app-backend.log"
-yunohost service add "${app}-broker" --description="Pretix broker" --log="/var/log/$app/$app-broker.log"
+yunohost service add "${app}-web" --description="Pretix web" --log="/var/log/$app/$app-web.log"
+yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app-worker.log"
 
 #=================================================
 # ADD A CRON JOB
