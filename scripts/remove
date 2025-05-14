@@ -8,16 +8,16 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Removing system configurations related to $app..."
 
-if ynh_hide_warnings yunohost service status "${app}-backend" >/dev/null; then
-    yunohost service remove "${app}-backend"
+if ynh_hide_warnings yunohost service status "${app}-web" >/dev/null; then
+    yunohost service remove "${app}-web"
 fi
 
-if ynh_hide_warnings yunohost service status "${app}-broker" >/dev/null; then
-    yunohost service remove "${app}-broker"
+if ynh_hide_warnings yunohost service status "${app}-worker" >/dev/null; then
+    yunohost service remove "${app}-worker"
 fi
 
-ynh_config_remove_systemd "${app}-backend"
-ynh_config_remove_systemd "${app}-broker"
+ynh_config_remove_systemd "${app}-web"
+ynh_config_remove_systemd "${app}-worker"
 
 ynh_config_remove_nginx
 
