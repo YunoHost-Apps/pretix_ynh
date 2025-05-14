@@ -45,7 +45,14 @@ touch "/var/log/$app/$app-backend.log"
 touch "/var/log/$app/$app-broker.log"
 chown -R "$app:www-data" "/var/log/$app"
 
-multi_redis_db backend broker redis_db
+backend=$(ynh_redis_get_free_db)
+redis_lock backend
+broker=$(ynh_redis_get_free_db)
+redis_lock broker
+redis_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$backend"
+redis_unlock "$broker"
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
