@@ -3,6 +3,12 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+secret=$(ynh_string_random --length=32)
+ynh_app_setting_set --key=secret --value=$secret
+
+tz="$(cat /etc/timezone)"
+ynh_app_setting_set --key=timezone --value=$tz
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
