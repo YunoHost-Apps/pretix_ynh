@@ -29,6 +29,15 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 chown -R $app:www-data "$data_dir"
 
+backend=$(ynh_redis_get_free_db)
+redis_lock backend
+broker=$(ynh_redis_get_free_db)
+redis_lock broker
+redis_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$backend"
+redis_unlock "$broker"
+
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
@@ -44,15 +53,6 @@ touch "/var/log/$app/$app.log"
 touch "/var/log/$app/$app-backend.log"
 touch "/var/log/$app/$app-broker.log"
 chown -R "$app:www-data" "/var/log/$app"
-
-backend=$(ynh_redis_get_free_db)
-redis_lock backend
-broker=$(ynh_redis_get_free_db)
-redis_lock broker
-redis_db=$(ynh_redis_get_free_db)
-
-redis_unlock "$backend"
-redis_unlock "$broker"
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
