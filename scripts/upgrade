@@ -7,6 +7,15 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+backend=$(ynh_redis_get_free_db)
+redis_lock backend
+broker=$(ynh_redis_get_free_db)
+redis_lock broker
+redis_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$backend"
+redis_unlock "$broker"
+
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
@@ -43,10 +52,13 @@ ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
     python3 -m venv $install_dir/venv
+    source "$install_dir/venv/bin/activate"
     ynh_hide_warnings $install_dir/venv/bin/pip install -U --upgrade-strategy eager pretix gunicorn
-    $install_dir/venv/bin/python3 -m pretix migrate
-    $install_dir/venv/bin/python3 -m pretix rebuild
-    $install_dir/venv/bin/python3 -m pretix updateassets
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix migrate
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix updateassets
+    chown -R $app:www-data "$install_dir"
+    deactivate
 popd
 
 #=================================================
