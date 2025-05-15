@@ -81,8 +81,8 @@ ynh_config_add_nginx
 ynh_config_add_systemd --service="${app}-web" --template="pretix-web.service"
 ynh_config_add_systemd --service="${app}-worker" --template="pretix-worker.service"
 
-yunohost service add "${app}-web" --description="Pretix web" --log="/var/log/$app/$app.log"
-yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
+yunohost service add ${app}-web --description=Pretix web --log=/var/log/$app/$app-web.log
+yunohost service add ${app}-worker --description=Pretix worker --log=/var/log/$app/$app-worker.log
 
 #=================================================
 # START SYSTEMD SERVICE
