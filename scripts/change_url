@@ -7,6 +7,24 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+backend=$(ynh_redis_get_free_db)
+redis_lock backend
+broker=$(ynh_redis_get_free_db)
+redis_lock broker
+redis_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$backend"
+redis_unlock "$broker"
+
+tz==$(ynh_app_setting_get --key=timezone)
+
+ynh_script_progression "Update $app's configuration files..."
+
+ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
+
+chmod 600 "$install_dir/pretix.cfg"
+chown "$app:$app" "$install_dir/pretix.cfg"
+
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
