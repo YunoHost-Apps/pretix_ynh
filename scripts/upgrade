@@ -56,6 +56,7 @@ pushd $install_dir
     python3 -m venv $install_dir/venv
     source "$install_dir/venv/bin/activate"
     ynh_hide_warnings $install_dir/venv/bin/pip install -U --upgrade-strategy eager pretix gunicorn
+    export PATH="$PATH:$nodejs_dir" 
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix migrate
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix updateassets
