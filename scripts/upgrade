@@ -16,6 +16,8 @@ redis_db=$(ynh_redis_get_free_db)
 redis_unlock "$backend"
 redis_unlock "$broker"
 
+tz==$(ynh_app_setting_get --key=timezone)
+
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
