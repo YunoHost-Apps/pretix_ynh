@@ -3,6 +3,12 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+secret=$(ynh_string_random --length=32)
+ynh_app_setting_set --key=secret --value=$secret
+
+tz="$(cat /etc/timezone)"
+ynh_app_setting_set --key=timezone --value=$tz
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -16,10 +22,21 @@ ynh_nodejs_install
 ynh_script_progression "Setting up source files..."
 
 mkdir -p $install_dir
+mkdir -p $data_dir/media
 
-chmod 750 "$install_dir"
+chmod -R 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+chown -R $app:www-data "$data_dir"
+
+backend=$(ynh_redis_get_free_db)
+redis_lock backend
+broker=$(ynh_redis_get_free_db)
+redis_lock broker
+redis_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$backend"
+redis_unlock "$broker"
 
 #=================================================
 # APP INITIAL CONFIGURATION
@@ -31,17 +48,30 @@ ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
 chmod 600 "$install_dir/pretix.cfg"
 chown "$app:$app" "$install_dir/pretix.cfg"
 
+mkdir -p /var/log/$app
+touch "/var/log/$app/$app.log"
+touch "/var/log/$app/$app-backend.log"
+touch "/var/log/$app/$app-broker.log"
+chown -R "$app:www-data" "/var/log/$app"
+
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
 #=================================================
 ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
-    python3 -m venv $install_dir/venv
-    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip setuptools wheel
+    ynh_exec_as_app python3 -m venv $install_dir/venv
+#    source "$install_dir/venv/bin/activate"
+    echo "source $install_dir/venv/bin/activate" >> $install_dir/.bashrc
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel django-redis
     ynh_hide_warnings $install_dir/venv/bin/pip install pretix gunicorn
-    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix migrate
-    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretix rebuild
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretix[postgres,redis]"
+#    export PATH="$PATH:$nodejs_dir" 
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix migrate
+    chown -R $app:www-data "$install_dir" 
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
+    chown -R $app:www-data "$install_dir"
+#    deactivate
 popd
 
 #=================================================
@@ -54,8 +84,8 @@ ynh_config_add_nginx
 ynh_config_add_systemd --service="${app}-web" --template="pretix-web.service"
 ynh_config_add_systemd --service="${app}-worker" --template="pretix-worker.service"
 
-yunohost service add "${app}-web" --description="Ticket shop application" --log="/var/log/$app/$app.log"
-yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app.log"
+yunohost service add "${app}-web" --description="Pretix web" --log="/var/log/$app/$app-web.log"
+yunohost service add "${app}-worker" --description="Pretix worker" --log="/var/log/$app/$app-worker.log"
 
 #=================================================
 # ADD A CRON JOB

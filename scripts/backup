@@ -33,9 +33,9 @@ ynh_backup "/etc/systemd/system/${app}-worker.service"
 ynh_backup "/etc/cron.d/$app"
 
 #=================================================
-# BACKUP THE MYSQL DATABASE
+# BACKUP THE DATABASE
 #=================================================
-ynh_print_info "Backing up the MySQL database..."
+ynh_print_info "Backing up the database..."
 
 ynh_psql_dump_db > db.sql
 
