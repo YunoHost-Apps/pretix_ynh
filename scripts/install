@@ -9,6 +9,8 @@ ynh_app_setting_set --key=secret --value=$secret
 tz=$(timedatectl show --value --property=Timezone)
 ynh_app_setting_set --key=timezone --value=$tz
 
+pyshort=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -70,9 +72,6 @@ pushd $install_dir
     chown -R $app:www-data "$install_dir" 
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
     chown -R $app:www-data "$install_dir"
-    # DEBUG
-    find -type f -name "output.875200f13250.css"
-    find -type f -name "auth.041e785254b9.js"
     deactivate
 popd
 
