@@ -18,6 +18,8 @@ redis_unlock "$broker"
 
 tz=$(timedatectl show --value --property=Timezone)
 
+pyshort=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
@@ -54,14 +56,14 @@ ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
     python3 -m venv $install_dir/venv
-#    source "$install_dir/venv/bin/activate"
+    source "$install_dir/venv/bin/activate"
     ynh_hide_warnings $install_dir/venv/bin/pip install -U --upgrade-strategy eager pretix gunicorn
-#    export PATH="$PATH:$nodejs_dir" 
+    export PATH="$PATH:$nodejs_dir" 
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix migrate
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix updateassets
     chown -R $app:www-data "$install_dir"
-#    deactivate
+    deactivate
 popd
 
 #=================================================
