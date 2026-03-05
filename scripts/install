@@ -6,15 +6,8 @@ source /usr/share/yunohost/helpers
 secret=$(ynh_string_random --length=32)
 ynh_app_setting_set --key=secret --value=$secret
 
-tz="$(cat /etc/timezone)"
+tz=$(timedatectl show --value --property=Timezone)
 ynh_app_setting_set --key=timezone --value=$tz
-
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression "Installing NodeJS..."
-
-ynh_nodejs_install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
