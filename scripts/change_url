@@ -16,7 +16,9 @@ redis_db=$(ynh_redis_get_free_db)
 redis_unlock "$backend"
 redis_unlock "$broker"
 
-tz=$(ynh_app_setting_get --key=timezone)
+tz=$(timedatectl show --value --property=Timezone)
+
+pyshort=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
 
 ynh_script_progression "Update $app's configuration files..."
 

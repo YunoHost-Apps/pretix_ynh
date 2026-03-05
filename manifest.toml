@@ -7,7 +7,7 @@ name = "Pretix"
 description.en = "Ticket shop for conferences, festivals, concerts..."
 description.fr = "Billetterie pour conférences, festivals, concerts..."
 
-version = "2025.2.0~ynh1"
+version = "2025.2.0~ynh2"
 
 maintainers = ["eric_G"]
 
@@ -61,3 +61,6 @@ ram.runtime = "50M"
 
     [resources.database]
     type = "postgresql"
+
+    [resources.nodejs]
+    version = "24"
