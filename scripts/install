@@ -23,7 +23,6 @@ ynh_script_progression "Setting up source files..."
 
 mkdir -p $install_dir
 mkdir -p $data_dir/media
-
 chmod -R 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
