@@ -65,7 +65,6 @@ pushd $install_dir
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel django-redis
     ynh_hide_warnings $install_dir/venv/bin/pip install pretix gunicorn
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretix[postgres,redis]"
-#    export PATH="$PATH:$nodejs_dir" 
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix migrate
     chown -R $app:www-data "$install_dir" 
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretix rebuild
