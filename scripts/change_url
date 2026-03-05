@@ -17,6 +17,9 @@ redis_unlock "$backend"
 redis_unlock "$broker"
 
 tz=$(timedatectl show --value --property=Timezone)
+
+pyshort=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+
 ynh_script_progression "Update $app's configuration files..."
 
 ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
