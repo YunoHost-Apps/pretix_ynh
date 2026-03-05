@@ -16,7 +16,7 @@ redis_db=$(ynh_redis_get_free_db)
 redis_unlock "$backend"
 redis_unlock "$broker"
 
-tz="$(cat /etc/timezone)"
+tz=$(timedatectl show --value --property=Timezone)
 
 ynh_script_progression "Update $app's configuration files..."
 
