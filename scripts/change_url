@@ -16,8 +16,7 @@ redis_db=$(ynh_redis_get_free_db)
 redis_unlock "$backend"
 redis_unlock "$broker"
 
-tz=$(ynh_app_setting_get --key=timezone)
-
+tz=$(timedatectl show --value --property=Timezone)
 ynh_script_progression "Update $app's configuration files..."
 
 ynh_config_add --template="pretix.cfg" --destination="$install_dir/pretix.cfg"
