@@ -16,7 +16,7 @@ redis_db=$(ynh_redis_get_free_db)
 redis_unlock "$backend"
 redis_unlock "$broker"
 
-tz=$(ynh_app_setting_get --key=timezone)
+tz="$(cat /etc/timezone)"
 
 #=================================================
 # STOP SYSTEMD SERVICE
@@ -36,13 +36,6 @@ mkdir -p $install_dir
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression "Upgrading dependencies..."
-
-ynh_nodejs_install
 
 #=================================================
 # UPDATE A CONFIG FILE
