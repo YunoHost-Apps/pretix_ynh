@@ -10,13 +10,6 @@ tz=$(timedatectl show --value --property=Timezone)
 ynh_app_setting_set --key=timezone --value=$tz
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression "Installing NodeJS..."
-
-ynh_nodejs_install
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Setting up source files..."
