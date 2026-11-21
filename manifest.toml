@@ -7,7 +7,7 @@ name = "Pretix"
 description.en = "Ticket shop for conferences, festivals, concerts..."
 description.fr = "Billetterie pour conférences, festivals, concerts..."
 
-version = "2025.2.0~ynh4"
+version = "2026.9.3~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -41,6 +41,11 @@ ram.runtime = "50M"
     default = "visitors"
 
 [resources]
+    [resources.sources.main]
+    url = "https://github.com/pretix/pretix/archive/refs/tags/v2026.9.3.tar.gz"
+    sha256 = "202ab2efae3aeca2624e04a965a90a7873629155c52faa5a3a7c3ed9552763df"
+    autoupdate.strategy = "latest_github_tag"
+    prefetch = false
 
     [resources.system_user]
     allow_email = true
